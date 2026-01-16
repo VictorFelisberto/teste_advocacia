@@ -1,4 +1,5 @@
 import "jsr:@supabase/functions-js/edge-runtime.d.ts";
+import { createClient } from "jsr:@supabase/supabase-js@2";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -24,6 +25,32 @@ Deno.serve(async (req: Request) => {
 
   try {
     const data: ContactFormData = await req.json();
+
+    const supabaseUrl = Deno.env.get("SUPABASE_URL");
+    const supabaseServiceKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY");
+
+    if (!supabaseUrl || !supabaseServiceKey) {
+      throw new Error("Configuração do Supabase ausente");
+    }
+
+    const supabase = createClient(supabaseUrl, supabaseServiceKey);
+
+    const { error: dbError } = await supabase
+      .from("contact_submissions")
+      .insert([
+        {
+          nome: data.nome,
+          email: data.email,
+          telefone: data.telefone,
+          assunto: data.assunto,
+          mensagem: data.mensagem,
+        },
+      ]);
+
+    if (dbError) {
+      console.error("Erro ao salvar no banco:", dbError);
+      throw new Error("Erro ao salvar mensagem");
+    }
 
     const emailContent = `
 <!DOCTYPE html>
@@ -120,36 +147,45 @@ Deno.serve(async (req: Request) => {
 </html>
     `;
 
+    let emailSent = false;
     const resendApiKey = Deno.env.get("RESEND_API_KEY");
-    if (!resendApiKey) {
-      throw new Error("RESEND_API_KEY não configurada");
-    }
 
-    const response = await fetch("https://api.resend.com/emails", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${resendApiKey}`,
-      },
-      body: JSON.stringify({
-        from: "contato@silvaadvocacia.com",
-        to: "victorhugofsantos@gmail.com",
-        reply_to: data.email,
-        subject: `Nova solicitação: ${data.assunto}`,
-        html: emailContent,
-      }),
-    });
+    if (resendApiKey) {
+      try {
+        const response = await fetch("https://api.resend.com/emails", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${resendApiKey}`,
+          },
+          body: JSON.stringify({
+            from: "contato@silvaadvocacia.com",
+            to: "victorhugofsantos@gmail.com",
+            reply_to: data.email,
+            subject: `Nova solicitação: ${data.assunto}`,
+            html: emailContent,
+          }),
+        });
 
-    if (!response.ok) {
-      const error = await response.text();
-      console.error("Resend API error:", error);
-      throw new Error(`Falha ao enviar email: ${response.statusText}`);
+        if (response.ok) {
+          emailSent = true;
+        } else {
+          console.warn("Resend API não respondeu corretamente");
+        }
+      } catch (emailError) {
+        console.warn("Erro ao enviar email via Resend:", emailError);
+      }
+    } else {
+      console.warn("RESEND_API_KEY não configurada");
     }
 
     return new Response(
       JSON.stringify({
         success: true,
-        message: "Email enviado com sucesso!",
+        message: emailSent
+          ? "Email enviado com sucesso!"
+          : "Mensagem recebida! Você receberá uma resposta em breve.",
+        emailSent,
       }),
       {
         status: 200,
