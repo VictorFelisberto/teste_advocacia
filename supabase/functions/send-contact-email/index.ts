@@ -148,36 +148,30 @@ Deno.serve(async (req: Request) => {
     `;
 
     let emailSent = false;
-    const resendApiKey = Deno.env.get("RESEND_API_KEY");
+const response = await fetch("https://api.resend.com/emails", {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+    Authorization: `Bearer ${resendApiKey}`,
+  },
+  body: JSON.stringify({
+    from: "Silva Advocacia <onboarding@resend.dev>", // teste imediato
+    to: ["victorhugofsantos@gmail.com"],
+    replyTo: data.email, // <-- CORRETO
+    subject: `Nova solicitação: ${data.assunto}`,
+    html: emailContent,
+  }),
+});
 
-    if (resendApiKey) {
-      try {
-        const response = await fetch("https://api.resend.com/emails", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${resendApiKey}`,
-          },
-          body: JSON.stringify({
-            from: "Acme <onboarding@resend.dev>",
-            to: "victorhugofsantos@gmail.com",
-            replyTo: data.email,
-            subject: `Nova solicitação: ${data.assunto}`,
-            html: emailContent,
-          }),
-        });
+const bodyText = await response.text();
 
-        if (response.ok) {
-          emailSent = true;
-        } else {
-          console.warn("Resend API não respondeu corretamente");
-        }
-      } catch (emailError) {
-        console.warn("Erro ao enviar email via Resend:", emailError);
-      }
-    } else {
-      console.warn("RESEND_API_KEY não configurada");
-    }
+if (!response.ok) {
+  console.error("Resend error:", response.status, bodyText);
+  // aqui você decide: ou retorna 500, ou mantém success true mas emailSent false
+} else {
+  emailSent = true;
+  console.log("Resend OK:", bodyText);
+}
 
     return new Response(
       JSON.stringify({
