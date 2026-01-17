@@ -3,8 +3,9 @@ import { createClient } from "jsr:@supabase/supabase-js@2";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
-  "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
-  "Access-Control-Allow-Headers": "Content-Type, Authorization, X-Client-Info, Apikey",
+  "Access-Control-Allow-Methods": "POST, OPTIONS",
+  "Access-Control-Allow-Headers":
+    "Content-Type, Authorization, X-Client-Info, Apikey",
 };
 
 interface ContactFormData {
@@ -16,177 +17,162 @@ interface ContactFormData {
 }
 
 Deno.serve(async (req: Request) => {
+  // CORS preflight
   if (req.method === "OPTIONS") {
-    return new Response(null, {
-      status: 200,
-      headers: corsHeaders,
-    });
+    return new Response(null, { status: 200, headers: corsHeaders });
+  }
+
+  // Só aceita POST
+  if (req.method !== "POST") {
+    return new Response(
+      JSON.stringify({ success: false, error: "Método não permitido" }),
+      {
+        status: 405,
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+      }
+    );
   }
 
   try {
     const data: ContactFormData = await req.json();
 
+    // validação básica
+    if (
+      !data?.nome?.trim() ||
+      !data?.email?.trim() ||
+      !data?.telefone?.trim() ||
+      !data?.assunto?.trim() ||
+      !data?.mensagem?.trim()
+    ) {
+      return new Response(
+        JSON.stringify({ success: false, error: "Campos obrigatórios faltando" }),
+        {
+          status: 400,
+          headers: { ...corsHeaders, "Content-Type": "application/json" },
+        }
+      );
+    }
+
     const supabaseUrl = Deno.env.get("SUPABASE_URL");
     const supabaseServiceKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY");
 
     if (!supabaseUrl || !supabaseServiceKey) {
-      throw new Error("Configuração do Supabase ausente");
+      throw new Error("Configuração do Supabase ausente (SUPABASE_URL/KEY)");
     }
 
     const supabase = createClient(supabaseUrl, supabaseServiceKey);
 
-    const { error: dbError } = await supabase
-      .from("contact_submissions")
-      .insert([
-        {
-          nome: data.nome,
-          email: data.email,
-          telefone: data.telefone,
-          assunto: data.assunto,
-          mensagem: data.mensagem,
-        },
-      ]);
+    const { error: dbError } = await supabase.from("contact_submissions").insert([
+      {
+        nome: data.nome,
+        email: data.email,
+        telefone: data.telefone,
+        assunto: data.assunto,
+        mensagem: data.mensagem,
+      },
+    ]);
 
     if (dbError) {
       console.error("Erro ao salvar no banco:", dbError);
       throw new Error("Erro ao salvar mensagem");
     }
 
-    const emailContent = `
-<!DOCTYPE html>
+    const emailContent = `<!DOCTYPE html>
 <html>
   <head>
     <meta charset="UTF-8">
     <style>
-      body {
-        font-family: Arial, sans-serif;
-        background-color: #f5f5f5;
-      }
-      .container {
-        max-width: 600px;
-        margin: 0 auto;
-        background-color: white;
-        padding: 40px;
-        border-radius: 8px;
-        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-      }
-      .header {
-        border-bottom: 3px solid #d97706;
-        padding-bottom: 20px;
-        margin-bottom: 30px;
-      }
-      .header h1 {
-        color: #1f2937;
-        margin: 0;
-        font-size: 24px;
-      }
-      .content {
-        color: #374151;
-        line-height: 1.6;
-      }
-      .field {
-        margin-bottom: 20px;
-      }
-      .label {
-        font-weight: bold;
-        color: #1f2937;
-        margin-bottom: 5px;
-      }
-      .value {
-        color: #4b5563;
-        padding: 10px;
-        background-color: #f9fafb;
-        border-radius: 4px;
-        border-left: 3px solid #d97706;
-      }
-      .footer {
-        border-top: 1px solid #e5e7eb;
-        margin-top: 30px;
-        padding-top: 20px;
-        font-size: 12px;
-        color: #6b7280;
-      }
+      body { font-family: Arial, sans-serif; background-color: #f5f5f5; }
+      .container { max-width: 600px; margin: 0 auto; background-color: white; padding: 40px;
+        border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+      .header { border-bottom: 3px solid #d97706; padding-bottom: 20px; margin-bottom: 30px; }
+      .header h1 { color: #1f2937; margin: 0; font-size: 24px; }
+      .content { color: #374151; line-height: 1.6; }
+      .field { margin-bottom: 20px; }
+      .label { font-weight: bold; color: #1f2937; margin-bottom: 5px; }
+      .value { color: #4b5563; padding: 10px; background-color: #f9fafb; border-radius: 4px;
+        border-left: 3px solid #d97706; }
+      .footer { border-top: 1px solid #e5e7eb; margin-top: 30px; padding-top: 20px;
+        font-size: 12px; color: #6b7280; }
     </style>
   </head>
   <body>
     <div class="container">
-      <div class="header">
-        <h1>Nova Mensagem de Contato</h1>
-      </div>
+      <div class="header"><h1>Nova Mensagem de Contato</h1></div>
       <div class="content">
-        <div class="field">
-          <div class="label">Nome:</div>
-          <div class="value">${escapeHtml(data.nome)}</div>
-        </div>
+        <div class="field"><div class="label">Nome:</div>
+          <div class="value">${escapeHtml(data.nome)}</div></div>
 
-        <div class="field">
-          <div class="label">Email:</div>
-          <div class="value">${escapeHtml(data.email)}</div>
-        </div>
+        <div class="field"><div class="label">Email:</div>
+          <div class="value">${escapeHtml(data.email)}</div></div>
 
-        <div class="field">
-          <div class="label">Telefone:</div>
-          <div class="value">${escapeHtml(data.telefone)}</div>
-        </div>
+        <div class="field"><div class="label">Telefone:</div>
+          <div class="value">${escapeHtml(data.telefone)}</div></div>
 
-        <div class="field">
-          <div class="label">Assunto:</div>
-          <div class="value">${escapeHtml(data.assunto)}</div>
-        </div>
+        <div class="field"><div class="label">Assunto:</div>
+          <div class="value">${escapeHtml(data.assunto)}</div></div>
 
-        <div class="field">
-          <div class="label">Mensagem:</div>
-          <div class="value">${escapeHtml(data.mensagem).replace(/\n/g, '<br>')}</div>
-        </div>
+        <div class="field"><div class="label">Mensagem:</div>
+          <div class="value">${escapeHtml(data.mensagem).replace(/\n/g, "<br>")}</div></div>
       </div>
       <div class="footer">
         <p>Esta mensagem foi enviada através do formulário de contato do site Silva Advocacia.</p>
       </div>
     </div>
   </body>
-</html>
-    `;
+</html>`;
 
+    // ===== Envio via Resend =====
+    const resendApiKey = Deno.env.get("RESEND_API_KEY") ?? "";
     let emailSent = false;
-const response = await fetch("https://api.resend.com/emails", {
-  method: "POST",
-  headers: {
-    "Content-Type": "application/json",
-    Authorization: `Bearer ${resendApiKey}`,
-  },
-  body: JSON.stringify({
-    from: "Silva Advocacia <onboarding@resend.dev>", // teste imediato
-    to: ["victorhugofsantos@gmail.com"],
-    replyTo: data.email, // <-- CORRETO
-    subject: `Nova solicitação: ${data.assunto}`,
-    html: emailContent,
-  }),
-});
+    let resendStatus: number | null = null;
+    let resendResponseText: string | null = null;
 
-const bodyText = await response.text();
+    if (!resendApiKey) {
+      console.warn("RESEND_API_KEY não configurada");
+    } else {
+      const response = await fetch("https://api.resend.com/emails", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${resendApiKey}`,
+        },
+        body: JSON.stringify({
+          // Use esse remetente pra TESTAR agora.
+          // Depois que verificar seu domínio no Resend, troque para contato@seudominio.com
+          from: "Silva Advocacia <onboarding@resend.dev>",
+          to: ["victorhugofsantos@gmail.com"],
+          replyTo: data.email, // camelCase correto
+          subject: `Nova solicitação: ${data.assunto}`,
+          html: emailContent,
+        }),
+      });
 
-if (!response.ok) {
-  console.error("Resend error:", response.status, bodyText);
-  // aqui você decide: ou retorna 500, ou mantém success true mas emailSent false
-} else {
-  emailSent = true;
-  console.log("Resend OK:", bodyText);
-}
+      resendStatus = response.status;
+      resendResponseText = await response.text();
+
+      if (!response.ok) {
+        console.error("Resend error:", resendStatus, resendResponseText);
+      } else {
+        emailSent = true;
+        console.log("Resend OK:", resendResponseText);
+      }
+    }
 
     return new Response(
       JSON.stringify({
         success: true,
+        emailSent,
         message: emailSent
           ? "Email enviado com sucesso!"
-          : "Mensagem recebida! Você receberá uma resposta em breve.",
-        emailSent,
+          : "Mensagem salva. Envio de email ainda não confirmado.",
+        resendStatus,
+        // você pode comentar isso se não quiser devolver detalhes
+        // resendResponseText,
       }),
       {
         status: 200,
-        headers: {
-          ...corsHeaders,
-          "Content-Type": "application/json",
-        },
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
       }
     );
   } catch (error) {
@@ -198,10 +184,7 @@ if (!response.ok) {
       }),
       {
         status: 400,
-        headers: {
-          ...corsHeaders,
-          "Content-Type": "application/json",
-        },
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
       }
     );
   }
