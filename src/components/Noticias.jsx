@@ -5,7 +5,7 @@ const noticias = [
     imagem: 'https://images.pexels.com/photos/5668882/pexels-photo-5668882.jpeg?auto=compress&cs=tinysrgb&w=800',
     titulo: 'A partir de maio, empresas deverão monitorar riscos à saúde mental',
     descricao: 'A partir de maio de 2026, empresas passarão a ser fiscalizadas de acordo com as exigências da nova redação da NR-1, norma que estabelece diretrizes gerais de saúde e segurança no trabalho',
-    link: https://www.migalhas.com.br/quentes/448486/nr-1-a-partir-de-maio-empresas-devem-monitorar-riscos-a-saude-mental
+    link: 'https://www.migalhas.com.br/quentes/448486/nr-1-a-partir-de-maio-empresas-devem-monitorar-riscos-a-saude-mental'
   },
   {
     imagem: 'https://images.pexels.com/photos/7841478/pexels-photo-7841478.jpeg?auto=compress&cs=tinysrgb&w=800',
