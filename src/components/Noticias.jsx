@@ -3,8 +3,8 @@ import { ArrowRight } from 'lucide-react';
 const noticias = [
   {
     imagem: 'https://images.pexels.com/photos/5668882/pexels-photo-5668882.jpeg?auto=compress&cs=tinysrgb&w=800',
-    titulo: 'Novas Regras da Reforma Trabalhista',
-    descricao: 'Entenda as mudanças recentes na legislação trabalhista e como elas afetam seus direitos.',
+    titulo: 'A partir de maio, empresas deverão monitorar riscos à saúde mental',
+    descricao: 'https://www.migalhas.com.br/quentes/448486/nr-1-a-partir-de-maio-empresas-devem-monitorar-riscos-a-saude-mental.',
   },
   {
     imagem: 'https://images.pexels.com/photos/7841478/pexels-photo-7841478.jpeg?auto=compress&cs=tinysrgb&w=800',
