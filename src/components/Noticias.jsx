@@ -62,7 +62,7 @@ export default function Noticias() {
                   {noticia.titulo}
                 </h3>
                 <p className="text-gray-600 mb-4 leading-relaxed">{noticia.descricao}</p>
-                <button className="text-amber-600 font-semibold flex items-center gap-2 hover:gap-4 transition-all">
+                <button link="https://www.migalhas.com.br/quentes/448486/nr-1-a-partir-de-maio-empresas-devem-monitorar-riscos-a-saude-mental." className="text-amber-600 font-semibold flex items-center gap-2 hover:gap-4 transition-all">
                   Leia mais <ArrowRight className="w-4 h-4" />
                 </button>
               </div>
