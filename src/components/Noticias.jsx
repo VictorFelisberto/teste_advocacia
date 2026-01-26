@@ -63,7 +63,7 @@ export default function Noticias() {
                   {noticia.titulo}
                 </h3>
                 <p className="text-gray-600 mb-4 leading-relaxed">{noticia.descricao}</p>
-                <a href={noticia.link} target="_blank" rel="noreferrer">
+                <a className="text-amber-600 font-semibold flex items-center gap-2 hover:gap-4 transition-all" href={noticia.link} target="_blank" rel="noreferrer">
                 Leia mais<ArrowRight className="w-4 h-4" />
                 </a>
               </div>
