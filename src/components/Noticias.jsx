@@ -63,7 +63,7 @@ export default function Noticias() {
                   {noticia.titulo}
                 </h3>
                 <p className="text-gray-600 mb-4 leading-relaxed">{noticia.descricao}</p>
-                <a href={noticia.link} target="_blank" rel="noreferrer">
+                <a href={noticia.link} target="_blank" rel="noreferrer" <ArrowRight className="w-4 h-4" />>
                 Leia mais
                 </a>
               </div>
