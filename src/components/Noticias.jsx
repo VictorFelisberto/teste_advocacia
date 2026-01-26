@@ -4,7 +4,8 @@ const noticias = [
   {
     imagem: 'https://images.pexels.com/photos/5668882/pexels-photo-5668882.jpeg?auto=compress&cs=tinysrgb&w=800',
     titulo: 'A partir de maio, empresas deverão monitorar riscos à saúde mental',
-    descricao: 'https://www.migalhas.com.br/quentes/448486/nr-1-a-partir-de-maio-empresas-devem-monitorar-riscos-a-saude-mental.',
+    descricao: 'A partir de maio de 2026, empresas passarão a ser fiscalizadas de acordo com as exigências da nova redação da NR-1, norma que estabelece diretrizes gerais de saúde e segurança no trabalho',
+    link: 'https://www.migalhas.com.br/quentes/448486/nr-1-a-partir-de-maio-empresas-devem-monitorar-riscos-a-saude-mental.'
   },
   {
     imagem: 'https://images.pexels.com/photos/7841478/pexels-photo-7841478.jpeg?auto=compress&cs=tinysrgb&w=800',
@@ -62,9 +63,9 @@ export default function Noticias() {
                   {noticia.titulo}
                 </h3>
                 <p className="text-gray-600 mb-4 leading-relaxed">{noticia.descricao}</p>
-                <button link="https://www.migalhas.com.br/quentes/448486/nr-1-a-partir-de-maio-empresas-devem-monitorar-riscos-a-saude-mental." className="text-amber-600 font-semibold flex items-center gap-2 hover:gap-4 transition-all">
-                  Leia mais <ArrowRight className="w-4 h-4" />
-                </button>
+                <a href={noticia.link} target="_blank" rel="noreferrer">
+                Leia mais
+                </a>
               </div>
             </div>
           ))}
