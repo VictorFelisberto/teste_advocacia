@@ -8,9 +8,10 @@ const noticias = [
     link: 'https://www.migalhas.com.br/quentes/448486/nr-1-a-partir-de-maio-empresas-devem-monitorar-riscos-a-saude-mental'
   },
   {
-    imagem: 'https://images.pexels.com/photos/7841478/pexels-photo-7841478.jpeg?auto=compress&cs=tinysrgb&w=800',
-    titulo: 'Revisão da Vida Toda aprovada pelo STF',
-    descricao: 'Saiba como solicitar a revisão e aumentar o valor da sua aposentadoria.',
+    imagem: 'https://images.jota.info/wp-content/uploads/2025/11/influenciador-digital-scaled.jpg',
+    titulo: 'Ministério do Trabalho vai propor decreto para regulamentar profissão de influenciador',
+    descricao: 'ova lei criou diversas profissões de trabalhadores multimídia, entre elas a de influenciador digital; pasta pediu veto, mas não foi atendida.',
+    link: 'https://www.jota.info/trabalho/ministerio-do-trabalho-vai-propor-decreto-para-regulamentar-profissao-de-influenciador'
   },
   {
     imagem: 'https://images.pexels.com/photos/8111808/pexels-photo-8111808.jpeg?auto=compress&cs=tinysrgb&w=800',
