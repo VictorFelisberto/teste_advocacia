@@ -2,34 +2,40 @@ import { ArrowRight } from 'lucide-react';
 
 const noticias = [
   {
-    imagem: 'https://images.pexels.com/photos/5668882/pexels-photo-5668882.jpeg?auto=compress&cs=tinysrgb&w=800',
-    titulo: 'Novas Regras da Reforma Trabalhista',
-    descricao: 'Entenda as mudanças recentes na legislação trabalhista e como elas afetam seus direitos.',
+    imagem: 'https://img2.migalhas.com.br/_MEDPROC_/https__img5.migalhas.com.br__SL__gf_base__SL__empresas__SL__miga__SL__imagens__SL__2026__SL__01__SL__23__SL__cropped_nr3zouee.y0q.jpg._PROC_CP65.jpg',
+    titulo: 'A partir de maio, empresas deverão monitorar riscos à saúde mental',
+    descricao: 'A partir de maio de 2026, empresas passarão a ser fiscalizadas de acordo com as exigências da nova redação da NR-1, norma que estabelece diretrizes gerais de saúde e segurança no trabalho',
+    link: 'https://www.migalhas.com.br/quentes/448486/nr-1-a-partir-de-maio-empresas-devem-monitorar-riscos-a-saude-mental'
   },
   {
-    imagem: 'https://images.pexels.com/photos/7841478/pexels-photo-7841478.jpeg?auto=compress&cs=tinysrgb&w=800',
-    titulo: 'Revisão da Vida Toda aprovada pelo STF',
-    descricao: 'Saiba como solicitar a revisão e aumentar o valor da sua aposentadoria.',
+    imagem: 'https://images.jota.info/wp-content/uploads/2025/11/influenciador-digital-scaled.jpg',
+    titulo: 'Ministério do Trabalho vai propor decreto para regulamentar profissão de influenciador',
+    descricao: 'Nova lei criou diversas profissões de trabalhadores multimídia, entre elas a de influenciador digital; pasta pediu veto, mas não foi atendida.',
+    link: 'https://www.jota.info/trabalho/ministerio-do-trabalho-vai-propor-decreto-para-regulamentar-profissao-de-influenciador'
   },
   {
-    imagem: 'https://images.pexels.com/photos/8111808/pexels-photo-8111808.jpeg?auto=compress&cs=tinysrgb&w=800',
-    titulo: 'Direitos do Consumidor: O que você precisa saber',
-    descricao: 'Conheça seus direitos e saiba como se proteger em relações de consumo.',
+    imagem: 'https://mobilidade.estadao.com.br/wp-content/uploads/2021/10/BR-116-e-a-estrada-mais-perigosa-do-Brasil.jpg',
+    titulo: 'Poder público não pode cobrar por uso de faixa de domínio para instalação de rede elétrica',
+    descricao: 'A 8ª Câmara de Direito Público do Tribunal de Justiça de São Paulo manteve a decisão da 10ª Vara de Fazenda Pública da Capital que determinou que uma autarquia estadual não deve cobrar uma concessionária de energia elétrica pelo uso de faixa de domínio de uma rodovia durante a implantação de rede de distribuição',
+    link: 'https://www.conjur.com.br/2026-jan-26/poder-publico-nao-pode-cobrar-por-uso-de-faixa-de-dominio-para-instalacao-de-rede-eletrica/',
   },
   {
-    imagem: 'https://images.pexels.com/photos/5669603/pexels-photo-5669603.jpeg?auto=compress&cs=tinysrgb&w=800',
-    titulo: 'Indenizações por Acidente de Trabalho',
-    descricao: 'Entenda quando você tem direito a indenização e como proceder.',
+    imagem: 'https://images.pexels.com/photos/210600/pexels-photo-210600.jpeg?_gl=1*1fs9g0y*_ga*MTg2MTQ3ODU3LjE3Njk0NzI5OTc.*_ga_8JE65Q40S6*czE3Njk0NzI5OTckbzEkZzEkdDE3Njk0NzMwNjQkajYwJGwwJGgw',
+    titulo: 'Fictor: Justiça autoriza bloqueio de contas por risco de lesão a investidores.',
+    descricao: 'Decisão liminar considerou admissão de problemas de liquidez pela empresa para assegurar ressarcimento em contrato de SCP.',
+    link: 'https://www.migalhas.com.br/quentes/448599/justica-autoriza-bloqueio-de-contas-por-risco-de-lesao-a-investidores',
   },
   {
-    imagem: 'https://images.pexels.com/photos/6077447/pexels-photo-6077447.jpeg?auto=compress&cs=tinysrgb&w=800',
-    titulo: 'Aposentadoria Especial: Novidades',
-    descricao: 'Mudanças nas regras para aposentadoria em condições especiais.',
+    imagem: 'https://medproc.migalhas.com.br/https__img5.migalhas.com.br__SL__gf_base__SL__empresas__SL__miga__SL__imagens__SL__2026__SL__01__SL__26__SL__cropped_m32lhjyx.ig5.png._PROC_CP65.png',
+    titulo: 'Código de Conduta: Quais proibições e permissões OAB/SP propôs ao STF?',
+    descricao: 'Proposta traz regras sobre conflitos de interesse, eventos, manifestações públicas e até uma "quarentena" para ministros do Supremo',
+    link: 'https://www.migalhas.com.br/quentes/448637/codigo-de-conduta-quais-proibicoes-e-permissoes-oab-sp-propos-ao-stf'
   },
   {
-    imagem: 'https://images.pexels.com/photos/5668858/pexels-photo-5668858.jpeg?auto=compress&cs=tinysrgb&w=800',
-    titulo: 'Direitos da Gestante no Trabalho',
-    descricao: 'Conheça os direitos garantidos pela legislação trabalhista.',
+    imagem: 'https://images.jota.info/wp-content/uploads/2025/10/2148269788.jpg',
+    titulo: 'Empresas terão que ressarcir gasto do INSS com auxílio por acidente de trabalho',
+    descricao: 'As ações foram movidas pela AGU, que divulgou duas decisões recentes, de novembro de 2025. Ainda cabe recurso.',
+    link: 'https://www.jota.info/trabalho/empresas-terao-que-ressarcir-gasto-do-inss-com-auxilio-por-acidente-de-trabalho',
   },
 ];
 
@@ -62,9 +68,9 @@ export default function Noticias() {
                   {noticia.titulo}
                 </h3>
                 <p className="text-gray-600 mb-4 leading-relaxed">{noticia.descricao}</p>
-                <button className="text-amber-600 font-semibold flex items-center gap-2 hover:gap-4 transition-all">
-                  Leia mais <ArrowRight className="w-4 h-4" />
-                </button>
+                <a className="text-amber-600 font-semibold flex items-center gap-2 hover:gap-4 transition-all" href={noticia.link} target="_blank" rel="noreferrer">
+                Leia mais<ArrowRight className="w-4 h-4" />
+                </a>
               </div>
             </div>
           ))}
