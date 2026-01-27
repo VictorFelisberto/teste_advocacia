@@ -10,7 +10,7 @@ const noticias = [
   {
     imagem: 'https://images.jota.info/wp-content/uploads/2025/11/influenciador-digital-scaled.jpg',
     titulo: 'Ministério do Trabalho vai propor decreto para regulamentar profissão de influenciador',
-    descricao: 'ova lei criou diversas profissões de trabalhadores multimídia, entre elas a de influenciador digital; pasta pediu veto, mas não foi atendida.',
+    descricao: 'Nova lei criou diversas profissões de trabalhadores multimídia, entre elas a de influenciador digital; pasta pediu veto, mas não foi atendida.',
     link: 'https://www.jota.info/trabalho/ministerio-do-trabalho-vai-propor-decreto-para-regulamentar-profissao-de-influenciador'
   },
   {
@@ -20,10 +20,10 @@ const noticias = [
     link: 'https://www.conjur.com.br/2026-jan-26/poder-publico-nao-pode-cobrar-por-uso-de-faixa-de-dominio-para-instalacao-de-rede-eletrica/',
   },
   {
-    imagem: 'https://medproc.migalhas.combr/https__img.migalhas.com.br__SL__gf_base__SL__empresas__SL__MIGA__SL__imagens__SL__2025__SL__02__SL__05__SL__cropped_h2mce1nb.n4q.jpg._PROC_CP65.jpg',
+    imagem: 'https://medproc.migalhas.com.br/https__img.migalhas.com.br__SL__gf_base__SL__empresas__SL__MIGA__SL__imagens__SL__2025__SL__02__SL__05__SL__cropped_h2mce1nb.n4q.jpg._PROC_CP65.jpg',
     titulo: 'Fictor: Justiça autoriza bloqueio de contas por risco de lesão a investidores.',
     descricao: 'Decisão liminar considerou admissão de problemas de liquidez pela empresa para assegurar ressarcimento em contrato de SCP.',
-    link: 'https://www.migalhas.com.br/quentes/448599/justica-autoriza-bloqueio-de-contas-por-risco-de-lesao-a-investidores.',
+    link: 'https://www.migalhas.com.br/quentes/448599/justica-autoriza-bloqueio-de-contas-por-risco-de-lesao-a-investidores',
   },
   {
     imagem: 'https://medproc.migalhas.com.br/https__img5.migalhas.com.br__SL__gf_base__SL__empresas__SL__miga__SL__imagens__SL__2026__SL__01__SL__26__SL__cropped_m32lhjyx.ig5.png._PROC_CP65.png',
