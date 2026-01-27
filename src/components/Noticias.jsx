@@ -20,7 +20,7 @@ const noticias = [
     link: 'https://www.conjur.com.br/2026-jan-26/poder-publico-nao-pode-cobrar-por-uso-de-faixa-de-dominio-para-instalacao-de-rede-eletrica/',
   },
   {
-    imagem: 'https://medproc.migalhas.com.br/https__img.migalhas.com.br__SL__gf_base__SL__empresas__SL__MIGA__SL__imagens__SL__2025__SL__02__SL__05__SL__cropped_h2mce1nb.n4q.jpg._PROC_CP65.jpg',
+    imagem: 'https://images.pexels.com/photos/210600/pexels-photo-210600.jpeg?_gl=1*1fs9g0y*_ga*MTg2MTQ3ODU3LjE3Njk0NzI5OTc.*_ga_8JE65Q40S6*czE3Njk0NzI5OTckbzEkZzEkdDE3Njk0NzMwNjQkajYwJGwwJGgw',
     titulo: 'Fictor: Justiça autoriza bloqueio de contas por risco de lesão a investidores.',
     descricao: 'Decisão liminar considerou admissão de problemas de liquidez pela empresa para assegurar ressarcimento em contrato de SCP.',
     link: 'https://www.migalhas.com.br/quentes/448599/justica-autoriza-bloqueio-de-contas-por-risco-de-lesao-a-investidores',
