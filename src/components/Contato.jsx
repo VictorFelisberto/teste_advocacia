@@ -237,6 +237,32 @@ export default function Contato() {
             </form>
           </div>
         </div>
+        <div className="mt-16">
+          <h3 className="text-2xl font-bold text-gray-800 mb-6 text-center">Localização</h3>
+          <div className="rounded-2xl overflow-hidden shadow-lg ring-1 ring-black/5 bg-white max-w-4xl mx-auto">
+            <div className="relative w-full" style={{ paddingTop: "56.25%" }}>
+              <iframe
+                title="Localização"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3657.1043736113506!2d-46.651785!3d-23.5646946!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce59c7f26deab1%3A0xa82f68d54bfe828f!2sAv.%20Paulista%2C%201000%20-%20Bela%20Vista%2C%20S%C3%A3o%20Paulo%20-%20SP%2C%2001310-100!5e0!3m2!1spt-BR!2sbr!4v1770669883471!5m2!1spt-BR!2sbr"
+                className="absolute inset-0 h-full w-full"
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                allowFullScreen
+              />
+            </div>
+          </div>
+          <div className="mt-4 flex justify-center">
+            <a
+              className="inline-flex items-center gap-2 rounded-full bg-white px-5 py-2 text-sm font-semibold text-gray-800 shadow-sm ring-1 ring-black/10 hover:shadow-md transition"
+              href="https://www.google.com/maps?q=Av.+Paulista,+1000,+São+Paulo,+SP"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Abrir no Google Maps
+              <span aria-hidden>↗</span>
+            </a>
+          </div>
+        </div>
       </div>
     </section>
   );
