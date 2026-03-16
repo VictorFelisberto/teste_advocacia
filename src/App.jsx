@@ -6,6 +6,7 @@ import Noticias from './components/Noticias';
 import Citacao from './components/Citacao';
 import Contato from './components/Contato';
 import Footer from './components/Footer';
+import WhatsAppButton from './components/WhatsAppButton';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
       <Citacao />
       <Contato />
       <Footer />
+      <WhatsAppButton />
     </div>
   );
 }
