@@ -95,9 +95,6 @@ export default function Footer() {
           <p className="text-gray-400 text-sm">
             © {new Date().getFullYear()} Silva Advocacia & Associados. Todos os direitos reservados.
           </p>
-          <p className="text-gray-500 text-xs mt-2">
-            Este é um site criado para fins educacionais.
-          </p>
         </div>
       </div>
     </footer>
