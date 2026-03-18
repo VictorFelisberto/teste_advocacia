@@ -1,4 +1,4 @@
-import { MessageCircle, Phone } from "lucide-react";
+import { FaWhatsapp } from "react-icons/fa";
 import { useEffect, useState } from 'react';
 
 export default function WhatsAppButton() {
@@ -22,7 +22,7 @@ export default function WhatsAppButton() {
       }`}
       aria-label="Abrir WhatsApp"
     >
-      <MessageCircle size={28} className="text-white" />
+      <FaWhatsapp size={28} className="text-white" />
 
       <span className="absolute bottom-full right-0 mb-3 px-4 py-2 bg-gray-900 text-white text-sm rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap pointer-events-none">
         Entre em contato
