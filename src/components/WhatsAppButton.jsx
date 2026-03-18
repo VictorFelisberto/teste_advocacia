@@ -1,4 +1,4 @@
-import { MessageCircle, Phone } from "lucide-react";
+import { FaWhatsapp } from "react-icons/fa";
 import { useEffect, useState } from 'react';
 
 export default function WhatsAppButton() {
