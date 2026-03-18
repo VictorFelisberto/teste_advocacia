@@ -14,7 +14,7 @@ export default function WhatsAppButton() {
 
   return (
     <a
-      href={"https://www.flaticon.com/br/icone-gratis/whatsapp_3670051"}
+      href="https://www.flaticon.com/br/icone-gratis/whatsapp_3670051"
       target="_blank"
       rel="noopener noreferrer"
       className={`fixed bottom-24 right-6 z-40 w-14 h-14 bg-green-500 rounded-full shadow-lg hover:shadow-xl hover:scale-110 transition-all duration-300 flex items-center justify-center group ${
