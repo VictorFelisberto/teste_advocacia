@@ -1,4 +1,4 @@
-import { MessageCircle } from 'lucide-react';
+import { MessageCircle, Phone } from "lucide-react";
 import { useEffect, useState } from 'react';
 
 export default function WhatsAppButton() {
